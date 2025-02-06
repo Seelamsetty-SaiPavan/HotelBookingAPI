@@ -1,4 +1,7 @@
 
+using HotelBookingAPI.Connection;
+using Serilog;
+
 namespace HotelBookingAPI
 {
     public class Program
@@ -8,6 +11,17 @@ namespace HotelBookingAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
+
+            // Initialize Serilog from appsettings.json
+            builder.Host.UseSerilog((context, services, configuration) => configuration
+                .ReadFrom.Configuration(context.Configuration)
+                .ReadFrom.Services(services));
+
+            builder.Services.AddTransient<SqlConnectionFactory>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

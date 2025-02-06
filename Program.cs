@@ -1,5 +1,6 @@
 
 using HotelBookingAPI.Connection;
+using HotelBookingAPI.Repository;
 using Serilog;
 
 namespace HotelBookingAPI
@@ -22,6 +23,7 @@ namespace HotelBookingAPI
                 .ReadFrom.Services(services));
 
             builder.Services.AddTransient<SqlConnectionFactory>();
+            builder.Services.AddScoped<UserRepository>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

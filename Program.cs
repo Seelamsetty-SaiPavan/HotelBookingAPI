@@ -24,6 +24,10 @@ namespace HotelBookingAPI
 
             builder.Services.AddTransient<SqlConnectionFactory>();
             builder.Services.AddScoped<UserRepository>();
+            builder.Services.AddScoped<RoomTypeRepository>();
+            builder.Services.AddScoped<RoomRepository>();
+            builder.Services.AddScoped<AmenityRepository>();
+            builder.Services.AddScoped<RoomAmenityRepository>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
